@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/departments")
 public class DepartmentController {
 
-   private final DepartmentService departmentService;
+    private final DepartmentService departmentService;
 
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
@@ -28,4 +28,5 @@ public class DepartmentController {
     public Department getById(@PathVariable Long id) throws Exception {
         return departmentService.getById(id);
     }
+
 }

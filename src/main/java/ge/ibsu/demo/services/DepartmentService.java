@@ -20,6 +20,6 @@ public class DepartmentService {
     }
 
     public Department getById(Long id) throws Exception {
-        return departmentRepository.findById(id).orElseThrow(() -> new Exception("DEPARTMENT_NOT_FOUND"));
+        return  departmentRepository.findById(id).orElseThrow(() -> new Exception("DEPARTMENT_NOT_FOUND"));
     }
 }

@@ -9,6 +9,7 @@ import java.util.Date;
 public class Employee {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
     private Long id;
 
@@ -24,11 +25,11 @@ public class Employee {
     @Column(name = "phone_number")
     private String phone;
 
-    @Column(name = "hire_date")
-    private Date hireDate;
-
     @Column(name = "salary")
     private Double salary;
+
+    @Column(name = "hire_date")
+    private Date hireDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
@@ -74,20 +75,20 @@ public class Employee {
         this.phone = phone;
     }
 
-    public Date getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
-
     public Double getSalary() {
         return salary;
     }
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public Date getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
     }
 
     public Department getDepartment() {

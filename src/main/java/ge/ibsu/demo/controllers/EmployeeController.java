@@ -1,11 +1,9 @@
 package ge.ibsu.demo.controllers;
 
+import ge.ibsu.demo.dto.AddEmployee;
 import ge.ibsu.demo.entities.Employee;
 import ge.ibsu.demo.services.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,15 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public Employee getById(@PathVariable Long id) throws Exception {
         return employeeService.getById(id);
+    }
+
+    @PostMapping("/add")
+    public Employee add(@RequestBody AddEmployee addEmployee) throws Exception {
+        return employeeService.saveEmployee(addEmployee, null);
+    }
+
+    @PutMapping("/{id}")
+    public Employee edit(@PathVariable Long id, @RequestBody AddEmployee addEmployee) throws Exception {
+        return employeeService.saveEmployee(addEmployee, id);
     }
 }
