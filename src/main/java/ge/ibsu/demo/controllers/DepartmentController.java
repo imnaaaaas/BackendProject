@@ -1,10 +1,12 @@
 package ge.ibsu.demo.controllers;
 
-import ge.ibsu.demo.entities.Department;
+import ge.ibsu.demo.dto.DepartmentDTO;
 import ge.ibsu.demo.services.DepartmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -13,20 +15,14 @@ import java.util.List;
 @RequestMapping("/api/departments")
 public class DepartmentController {
 
-    private final DepartmentService departmentService;
+    @Autowired
+    private DepartmentService departmentService;
 
-    public DepartmentController(DepartmentService departmentService) {
-        this.departmentService = departmentService;
+    @GetMapping
+    public ResponseEntity<List<DepartmentDTO>> getDepartments(
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) String city) {
+
+        return ResponseEntity.ok(departmentService.getDepartments(country, city));
     }
-
-    @GetMapping("/all")
-    public List<Department> getAll() {
-        return departmentService.getAll();
-    }
-
-    @GetMapping("/{id}")
-    public Department getById(@PathVariable Long id) throws Exception {
-        return departmentService.getById(id);
-    }
-
 }
