@@ -1,11 +1,10 @@
 package ge.ibsu.demo.repositories;
-
+// quizz task 4
 import ge.ibsu.demo.dto.DepartmentDTO;
 import ge.ibsu.demo.entities.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import java.util.List;
 
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
@@ -29,4 +28,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
             @Param("country") String country,
             @Param("city") String city
     );
+
+    @Query("SELECT DISTINCT d FROM Department d JOIN FETCH d.employees")
+    List<Department> findAllWithEmployees();
 }
